@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <title>If Doge Then Wow</title>
+  <meta name="description" content="Set up custom actions when a wallet receives a confirmed Dogecoin transaction.">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/skeleton.css">
+  <link rel="stylesheet" href="css/custom.css">
+  <script src="js/ifdogethenwow.js"></script>
+
+</head>
+<body>
+
+  <!-- Primary Page Layout
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+
+  <div class="section hero">
+    <div class="container">
+      <div class="row">
+        <div class="one-half column">
+          <h4 class="hero-heading">If Doge, Then Wow!</h4>
+          <p><em>programmable actions for Dogecoin wallets</em></p>
+           <p>take payments, respond to donations, do good in three easy steps</p>
+           <p><a href="#howItWorks">How it Works</a> | <a href="#createActions">Create Actions</a></p>
+          </div>
+          <div class="one-half column">
+           <img class="doge-image" src="images/dogecoin-300.png" alt="happy doge coin">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section actions" id="howItWorks">
+    <div class="container">
+      <div class="row">
+        <div class="one-third column action">
+          <h5 class="action-heading">1. Set up an action</h5>
+          <p class="action-description">Send a tweet, get an email, POST to a webhook... tell us!</p>
+        </div>
+        <div class="one-third column action">
+          <h5 class="action-heading">2. Receive Dogecoin</h5>
+          <p class="action-description">Someone sends your wallet Doge.</p>
+        </div>
+        <div class="one-third column action">
+          <h5 class="action-heading">3. Something happens</h5>
+          <p class="action-description">Your action gets called. It's that simple.</p>
+        </div>
+      </div>
+      <div class="row">
+          <div class="column">
+              <h5>How does it work?</h5>
+              <p>Register an action with us. We monitor the Dogecoin blockchain, and as soon as we see a transaction meeting your criteria (to your wallet address, optionally from a source address), we'll perform the action you registered: sending you a DM on Twitter, POSTing to your webhook, sending you an email.</p>
+
+              <p>When we receive a Dogecoin payment from you, we'll enable your action:</p>
+
+              <ul>
+
+                  <li>30 days for 10 Doge</li>
+                  <li>1 year for 100 Doge</li>
+
+              </ul>
+
+              <p>Refill your credits any time with a simple transaction!</p>
+          </div>
+        </div>
+    </div>
+  </div>
+
+  <div class="section" id="createActions">
+    <div class="container">
+        <div class="row">
+            <div class="twelve columns" id="exampleButtons">
+                <h4>Create Your Action</h4>
+                <p>
+                    <button class="exampleButton" data-template="sendTweet">Send a Tweet</button>
+                    <button class="exampleButton" data-template="sendEmail">Send an Email</button>
+                    <button class="exampleButton" data-template="postApi">POST to an API</button>
+                </p>
+            </div>
+        </div>
+      <div class="row hidden" id="actionCreation">
+        <div class="one-half column action">
+          <h5 class="action-heading">Fill Out This Form</h5>
+          <div class="row">
+              <form id="exampleForm"></form>
+          </div>
+        </div>
+        <div class="one-half column action">
+          <h5 class="action-heading">POST this JSON</h5>
+          <pre><code id="exampleCode" class="hidden"></code></pre>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section get-help">
+    <div class="container">
+      <h3 class="section-heading">Need help getting started?</h3>
+      <!-- p class="section-description">Coming soon!</p -->
+      <a class="button button-primary" href="">Coming Soon</a>
+    </div>
+  </div>
+
+  <div class="section">
+      <p><a href="https://twitter.com/ifdogethenwow">@ifdogethenwow</a></p>
+      <p>Copyright 2021 BBMLLC</p>
+  </div>
+
+  <div id="codeTemplates" class="hidden">
+      <code id="sendTweetCode">{
+    "type": "sendTweet",
+    "my": "value",
+    "another": "value",
+    "third": "value"
+}</code>
+      <form id="sendTweetForm" method="POST" action="/api/v1/action">
+          <input type="hidden" id="actionType" name="actionType" value="TweetDirectMessage">
+          <label for="fromWallet">Sender's Wallet Address (optional)</label>
+          <input id="fromWallet" name="fromWallet" placeholder="sender's wallet address">
+          <label for="toWallet">Recipient Wallet Address</label>
+          <input id="toWallet" name="toWallet" placeholder="your wallet address">
+          <label for="twitterName">Twitter Name</label>
+          <input id="twitterName" name="twitterName" placeholder="your Twitter name">
+          <label for="contactEmail">Contact Email (optional)</label>
+          <input id="contactEmail" type="email" name="contactEmail" placeholder="your email address">
+          <label for="messageTemplate">Message Template</label>
+          <textarea id="messageTemplate" name="messageTemplate" placeholder="Hi there, $fromWallet just sent you $value Dogecoin!"></textarea>
+          <input class="button-primary" type="submit" value="Create a Twitter DM Action!"></input>
+      </form>
+
+      <code id="sendEmailCode">{
+    "type": "sendEmail",
+    "my": "value",
+    "another": "value",
+    "third": "value"
+}</code>
+      <form id="sendEmailForm" method="POST" action="/api/v1/action">
+          <input type="hidden" id="actionType" name="actionType" value="Email">
+          <label for="fromWallet">Sender's Wallet Address (optional)</label>
+          <input id="fromWallet" name="fromWallet" placeholder="sender's wallet address">
+          <label for="toWallet">Recipient Wallet Address</label>
+          <input id="toWallet" name="toWallet" placeholder="your wallet address">
+          <label for="emailSubject">Email Subject</label>
+          <input id="emailSubject" name="emailSubject" placeholder="Dogecoin received!">
+          <label for="recipientEmail">Recipient Email (required)</label>
+          <input id="recipientEmail" type="email" name="recipientEmail" placeholder="your email address">
+          <label for="messageTemplate">Message Template</label>
+          <textarea id="messageTemplate" name="messageTemplate" placeholder="Hi there, $fromWallet just sent you $value Dogecoin!"></textarea>
+          <input class="button-primary" type="submit" value="Create an Email Action!"></input>
+      </form>
+
+      <code id="postApiCode">{
+    "type": "postApi",
+    "my": "value",
+    "another": "value",
+    "third": "value"
+}</code>
+      <form id="postApiForm" method="POST" action="/api/v1/action">
+          <input type="hidden" id="actionType" name="actionType" value="PostAPI">
+          <label for="fromWallet">Sender's Wallet Address (optional)</label>
+          <input id="fromWallet" name="fromWallet" placeholder="sender's wallet address">
+          <label for="toWallet">Recipient Wallet Address</label>
+          <input id="toWallet" name="toWallet" placeholder="your wallet address">
+          <label for="apiURL">URI to POST to</label>
+          <input id="apiURI" name="apiURI" placeholder="https://example.com/api/dogecoinpayment">
+          <label for="apiHeaders">API Headers (optional)</label>
+          <textarea id="apiHeaders" name="apiHeaders" placeholder='{ "X-Dogecoin": "from ifdogethenwow.com" }'></textarea>
+          <input class="button-primary" type="submit" value="Create an API POST Action!"></input>
+      </form>
+    </div>
+
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
+</html>
