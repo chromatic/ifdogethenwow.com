@@ -22,7 +22,7 @@ happens next is up to you.
 
 If Doge Then Wow supports four types of actions right now:
 
-- `Email`: send an email to a specified address, with a given subject line and a configurable body
+- `[Email](email_action.md)`: send an email to a specified address, with a given subject line and a configurable body
 - `Tweet`: send a tweet from the [@ifdogethenwow](https://twitter.com/ifdogethenwow) account
 - `PostToDiscord`: send a message to a specified Discord channel
 - `PostToSlack`: send a message to a specified Slack channel
